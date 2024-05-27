@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script> 
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdbootstrap/css/bootstrap.min.css" />
+   
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script> <!-- IMPORTA BOOTSTRAP -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdbootstrap/css/cdb.min.css" />
+</head>
+<body>
+    <div id="divPrincipal"> <!-- container principal -->
+        <!-- Definindo a navbar com Bootstrap: -->
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: palevioletred;">
+            <div class="container-xl">
+                <a class="navbar-brand" href="#">
+                    <h2>Formulario de cadastro</h2>
+                </a>
+                <!-- Definindo botão de alternar (toggle) na barra de navegação: -->
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarPrincipal"
+                    aria-controls="navbarPrincipal"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span> <!-- Contém um ícone de toggle, representado pelo "hambúrguer" -->
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarPrincipal">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item"> <!-- aplica a classe do bootstrap "nav-item" ao item de lista, estilizando-o como item de navegacao-->
+                      <a v-on:click="message = 'Estados'" class="nav-link" aria-current="page" href="#">Estados</a>                    
+                    </li>
+
+                    <li class="nav-item">
+                        <a v-on:click="message = 'Cidade'" class="nav-link" aria-current="page" href="#"> Cidade </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a v-on:click="message = 'Bairro'" class="nav-link" aria-current="page" href="#"> Bairro </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a @click="message = 'Endereço postal' "   class="nav-link" aria-current="page" href="#">Endereço postal</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    <!-- Finalizei o navbar -->
+</div>
+
+    
+    <div class="p-5 rounded"> <!-- adiciona espacamento interno de 5 unidades de medida do bootstrap em todas as direcoes ao redor do conteudo do div-->
+        <div class="col-sm-8 mx-auto">
+            <h1 class="jumbotron">{{ message }}</h1> <!-- class jumbotron é do bootstrap, ela desteca uma parte do conteudo. `{{ message }}`: o que estiver sido definido pelo Vue ira para aparecer no lugar de {{message}}-->
+       
+    <!--Form estados-->
+    <div v-show = " message == 'Estados '" >
+        <div class="form-floating mb-3"> <!--mb-3: Esta classe do Bootstrap adiciona uma margem inferior (margin-bottom) de 1rem ao elemento, espaçando-o dos elementos abaixo.-->
+            <!-- completar aqui dps que entender com o professor-->
+            <input type="text" class="form-control" id="nomeestado" v-model="estado.nomeestado"> <!--campo de entrada, nesse caso, do tipo texto, com classe bootstrap, identificador e v-model-->
+            <label for="nomeestado">Estado</label> <!--a etiqueta label forncece um identificador, diz para que o input esta sendo usado-->
+
+                <button class="mt-3 mb-3 btn btn-primary" @click="addEstado()"> <!--botao que utilza a class vinda do bootstrap--> 
+                        Adicionar </button>
+
+                        <table class="table"> <!-- <table> representa os dados em forma de tabela. class="table" vem do bootstrap  -->
+                            <thead> <!--representa a seção do cabeçalho da tabela.-->
+                                <tr> <!-- representa uma linha da tabela. Junto com o thead, representa uma linha de cabecalho-->
+                                    <th scope="col">#</th> <!-- th: representa uma celula de cabecalho na tabela. scope="col"o texto dentro dessa celula eh o titulo da coluna-->
+                                    <th scope="col">estado</th>
+                                </tr>
+                            </thead>
+                            <tbody> <!--onde vao ir os dados da tabela-->
+                                <tr v-for="(item, index) in cadastro" :key="index"> <!-- "tr" representa uma linha na tabela. enderizar várias linhas na tabela com base nos itens do array agendamentos. Para cada item no array agendamentos, uma nova linha é criada na tabela. -->
+                                    <td>{{ index + 1 }}</td> <!-- Adiciona 1 para indexação começar em 1, se preferir -->
+                                    <td>{{ item.nome }}</td> <!-- Mostra o nome do estado -->
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button @click="editEstado(item)" class="btn btn-info">Editar</button>
+                                            <button @click="removeEstado(item)" class="btn btn-danger">Excluir</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+<script src="./Script.js"></script>
+</body>
+</html>
+
+</html>
